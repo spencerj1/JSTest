@@ -1,0 +1,38 @@
+<!-- HEADER -->
+<div class="header">
+    <h3 class="text-muted">{{ appName }}</h3>
+</div>
+<!-- NEWS JUMBOTRON -->
+<div class="jumbotron">
+    <div ng-show="newsArticles.responseData">
+        <h3>{{ qs }} News</h3>
+        <div class="media" ng-repeat="article in newsArticles.responseData.results">
+            <a class="pull-left" href="{{ article.unescapedUrl }}" target="_blank">
+                <img ng-show="article.image.url" class="media-object" alt="64x64" ng-src="{{ article.image.url }}" style="width: 64px; height: 64px;">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading" ng-bind-html="article.title"></h4>
+                <span ng-bind-html="article.content"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-hide="newsArticles.responseData">
+        <h3 class="text-muted">...sad no news</h3>
+    </div>
+</div>
+<!-- NEWS CUSTOMIZATION FORM -->
+<div class="row marketing">
+    <h4>Want Different News?</h4>
+    <div class="input-group">
+        <input type="text" ng-model="qs" class="form-control">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="updateNews(qs);">Update Feed</button>
+        </span>
+    </div>
+</div>
+<!-- FOOTER -->
+<div class="footer">
+    <p>@krsween</p>
+</div>
